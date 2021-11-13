@@ -1,0 +1,19 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'antlr'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.antlr:antlr4:4.9.3'
+    implementation 'com.google.guava:guava:30.1.1-jre'
+    testImplementation 'junit:junit:4.13'
+}
+
+application {
+    mainClassName = 'exert.antlr.App'
+}

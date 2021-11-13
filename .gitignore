@@ -1,4 +1,8 @@
 /.*/
 /bin/
 /build/
-/.project
+/*/.*/
+/*/bin/
+/*/build/
+.project
+.classpath
