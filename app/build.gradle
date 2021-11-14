@@ -9,6 +9,7 @@ repositories {
 }
 
 dependencies {
+    // 这个引入是 antlr 不是常规的 implementation 等其他。
     antlr 'org.antlr:antlr4:4.9.3'
     implementation 'org.antlr:antlr4-runtime:4.9.3'
     implementation 'com.google.guava:guava:30.1.1-jre'
