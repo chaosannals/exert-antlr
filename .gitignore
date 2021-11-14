@@ -4,5 +4,7 @@
 /*/.*/
 /*/bin/
 /*/build/
+/**/grammar/
+.antlr
 .project
 .classpath
