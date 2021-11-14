@@ -33,12 +33,6 @@ configurations {
 
 generateGrammarSource {
     maxHeapSize = "64m"
-
-    doLast {
-        println "Copying generated grammar lexer/parser files to main directory."
-        copy {
-            from "${buildDir}/generated-src/antlr/main"
-            into "src/main/java/exert/antlr/grammar"
-        }
-    }
+    arguments += ['-visitor']
+    outputDirectory = new File("src/main/java/exert/antlr/grammar")
 }
