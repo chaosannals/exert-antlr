@@ -13,3 +13,4 @@
 - V 基本数据类型void
 - L; 对象类型（L开头，类路径，;结尾），如Ljava/lang/Object;
 - [ 数组类型（[开头，描述符），如[Ljava/lang/Object; 和 [I
+- () 函数类型（括号里面是参数描述，返回类型结尾），如 ()V 和 (I[Ljava/lang/String;)Z
