@@ -22,4 +22,21 @@ public class App {
 
         }
     }
+
+    /**
+     * 使用 visitor 解释计算。
+     * 
+     * @param program
+     * @return
+     * @throws IOException
+     */
+    public Double interpert(String program) throws IOException {
+        InputStream is = new ByteArrayInputStream(program.getBytes());
+        CharStream input = CharStreams.fromStream(is);
+        CalculatorLexer lexer = new CalculatorLexer(input);
+        CalculatorParser parser = new CalculatorParser(new CommonTokenStream(lexer));
+        ParseTree tree = parser.opc();
+        AppVisitor av = new AppVisitor();
+        return av.visit(tree);
+    }
 }

@@ -6,8 +6,17 @@ package exert.antlr;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import java.io.IOException;
+
 public class AppTest {
-    @Test public void testAppHasAGreeting() {
-       
+    @Test
+    public void testAppHasAGreeting() {
+        try {
+            App app = new App();
+            Double r = app.interpert("1.2 + 2.6 * (2 - 1)");
+            assertEquals(r, 3.8, 0.001);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
