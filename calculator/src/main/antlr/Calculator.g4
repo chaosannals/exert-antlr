@@ -5,10 +5,10 @@ grammar Calculator;
 }
 
 
-opc: NUM
-    | PL opc PR
-    | opc op=(STAR|SLASH) opc
-    | opc op=(PLUS|MINUS) opc
+opc: NUM #asNumber
+    | PL opc PR #asPrior
+    | opc op=(STAR|SLASH) opc #asLv2
+    | opc op=(PLUS|MINUS) opc #asLv1
     ;
 
 
