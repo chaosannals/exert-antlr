@@ -1,6 +1,9 @@
 package exert.antlr;
 
 import java.io.*;
+import java.lang.reflect.*;
+import java.nio.file.*;
+
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
 import exert.antlr.grammar.*;
@@ -15,11 +18,20 @@ public class App {
             CalculatorParser parser = new CalculatorParser(new CommonTokenStream(lexer));
             ParseTree tree = parser.opc();
             System.out.println(tree.toStringTree());
-            AppVisitor av = new AppVisitor();
-            Double r = av.visit(tree);
+            AppListener al = new AppListener();
+            ParseTreeWalker worker = new ParseTreeWalker();
+            worker.walk(al, tree);
+            byte[] c = al.make();
+            // Files.write(Path.of("Calculator.class"), c);
+            AppLoader loader = new AppLoader();
+            Class<?> ac = loader.load(al.getClassName(), c);
+            Method m = ac.getMethod(al.getMethodName());
+            Object r = m.invoke(null);
             System.out.println(r);
-        } catch (IOException e) {
-
+        } catch (IOException | NoSuchMethodException | SecurityException e) {
+            e.printStackTrace();
+        }catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+            e.printStackTrace();
         }
     }
 
