@@ -1,2 +1,3 @@
 rootProject.name = 'exert-antlr'
+include('asmx86')
 include('calculator')

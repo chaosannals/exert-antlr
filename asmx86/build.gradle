@@ -1,0 +1,45 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'antlr'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // 这个引入是 antlr 不是常规的 implementation 等其他。
+    antlr 'org.antlr:antlr4:4.9.3'
+    implementation 'org.antlr:antlr4-runtime:4.9.3'
+    implementation 'org.apache.logging.log4j:log4j-api:2.14.1'
+    implementation 'org.apache.logging.log4j:log4j-core:2.14.1'
+    implementation group: 'org.ow2.asm', name: 'asm', version: '9.2'
+    testImplementation 'junit:junit:4.13'
+}
+
+application {
+    mainClassName = 'exert.antlr.asmx86.App'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+    sourceCompatibility = 17
+    targetCompatibility = 17
+}
+
+configurations {
+    compile {
+        extendsFrom = extendsFrom.findAll { it != configurations.antlr }
+    }
+}
+
+generateGrammarSource {
+    maxHeapSize = "64m"
+    arguments += ['-visitor']
+    outputDirectory = new File("src/main/java/exert/antlr/asmx86/grammar")
+}
+
+processResources {
+    include { "**/*.*" }
+}
