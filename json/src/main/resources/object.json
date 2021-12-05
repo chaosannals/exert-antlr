@@ -1,0 +1,10 @@
+{
+    "one": 1,
+    "two": [1, 23, "sedf"],
+    "other": {
+        "t": true,
+        "f": false,
+        "n": null,
+        "a": [null, 123, 567.3434]
+    }
+}
